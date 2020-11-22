@@ -29,3 +29,20 @@ free -m |& log2file /tmp/[CASE_NUMBER].log;
 
 # *logand2file Example
 free -m |& logand2file /tmp/[CASE_NUMBER].log;
+
+# OR
+# *or just output to a file defined in "LOGFILE".
+LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
+log2file() { LOGFILE=$1; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
+
+# *or STDOUT and a file defined in "LOGFILE".
+LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
+logand2file() { while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" | tee -a "$LOGFILE"; done; };
+
+# *log2file Example
+free -m |& log2file;
+
+# *logand2file Example
+free -m |& logand2file;
+
+# Just make a BASH wrapper and call your script like I called "free".
