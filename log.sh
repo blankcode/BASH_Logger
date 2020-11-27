@@ -31,6 +31,7 @@ free -m |& log2file /tmp/[CASE_NUMBER].log;
 free -m |& logand2file /tmp/[CASE_NUMBER].log;
 
 # OR
+
 # *or just output to a file defined in "LOGFILE".
 LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
 log2file() { LOGFILE=$1; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
