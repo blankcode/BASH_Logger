@@ -1,9 +1,6 @@
 #=================================
-<<<<<<< HEAD
 # ***Logging command ouptut as it is without altering it. (Keep Leading spaces and other such formatting)***
-=======
-# ***Logging command ouptut as it is without altering it. (Keep Leading spaces and other such formating)***
->>>>>>> bd97828931f64c96fc9b2d4e38b7855c1089fa2d
+
 # I want this output:
 # $ free -m
 #               total        used        free      shared  buff/cache   available
@@ -19,17 +16,10 @@
 log() { while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line"; done; };
 
 # or just output to a file defined in "LOGFILE".
-<<<<<<< HEAD
 log2file() { [[ "$LOGFILE" == "" ]] && { LOGFILE=$1 }; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
 
 # or STDOUT and a file defined in "LOGFILE".
 logand2file() { [[ "$LOGFILE" == "" ]] && { LOGFILE=$1 }; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" | tee -a "$LOGFILE"; done; };
-=======
-log2file() { LOGFILE=$1; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
-
-# or STDOUT and a file defined in "LOGFILE".
-logand2file() { LOGFILE=$1; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" | tee -a "$LOGFILE"; done; };
->>>>>>> bd97828931f64c96fc9b2d4e38b7855c1089fa2d
 
 # log Example.
 free -m |& log; # The '|&' logs ERRORS and STDOUT. Also handles leading spaces.
@@ -41,17 +31,9 @@ free -m |& log2file /tmp/[CASE_NUMBER].log;
 # logand2file Example
 free -m |& logand2file /tmp/[CASE_NUMBER].log;
 
-<<<<<<< HEAD
 # or just output to a file defined in "LOGFILE".
 LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
 log2file() { [[ "$LOGFILE" == "" ]] && { LOGFILE=$1 }; while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
-=======
-# OR
-
-# or just output to a file defined in "LOGFILE".
-LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
-log2file() { while IFS= read -r line; do printf '%s\n' "$(date "+%Y%m%d-%H:%M:%S.%N%z"): $line" >> $LOGFILE; done; };
->>>>>>> bd97828931f64c96fc9b2d4e38b7855c1089fa2d
 
 # or STDOUT and a file defined in "LOGFILE".
 LOGFILE=/tmp/[CASE_NUMBER-or-whatever].log;
